@@ -1,6 +1,8 @@
 package com.career.backend.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -46,13 +48,8 @@ public class JwtService {
         try {
             extractClaims(token);
             return true;
-        } catch (JwtException e) {
+        } catch (Exception e) {
             return false;
         }
-    }
-
-    // (Optional but useful)
-    public String extractUsername(String token) {
-        return extractClaims(token).getSubject();
     }
 }
